@@ -1,4 +1,4 @@
-# Typescript topics (ES5, ES6, ES7, ES8)
+# Typescript topics
 All Typescript topics index
 
 <ol>
