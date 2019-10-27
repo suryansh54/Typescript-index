@@ -29,7 +29,7 @@ All Typescript topics index
   <li><a href="javascript:;" title="tsconfig.json">tsconfig.json</a></li>
   <li><a href="javascript:;" title="SOLID principles">SOLID principles</a>
       <ul>
-        <li><a href="javascript:;" title="Single responsibility principle">Single responsibility principle</a>
+        <li><a href="javascript:;" title="Single responsibility principle">Single responsibility principle</a></li>
         <li><a href="javascript:;" title="Open-closed principle">Open-closed principle</a></li>
         <li><a href="javascript:;" title="Liskov Substitution principle">Liskov Substitution principle</a></li>
         <li><a href="javascript:;" title="Interface segregation principle">Interface segregation principle</a></li>
