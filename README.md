@@ -59,18 +59,18 @@ All Typescript topics index
 
 ### Basic Types
 <ol>
-  <li><a href="javascript:;" title="Boolean">Boolean</a></li>
-  <li><a href="javascript:;" title="Number">Number</a></li>
-  <li><a href="javascript:;" title="String">String</a></li>
-  <li><a href="javascript:;" title="Array">Array</a></li>
-  <li><a href="javascript:;" title="Tuple">Tuple</a></li>
-  <li><a href="javascript:;" title="Enum">Enum</a></li>
-  <li><a href="javascript:;" title="Any">Any</a></li>
-  <li><a href="javascript:;" title="Void">Void</a></li>
-  <li><a href="javascript:;" title="Null and Undefined">Null and Undefined</a></li>
-  <li><a href="javascript:;" title="Never">Never</a></li>
-  <li><a href="javascript:;" title="Object">Object</a></li>
-  <li><a href="javascript:;" title="Type assertions">Type assertions</a></li>
+  <li><a href="#boolean" title="Boolean">Boolean</a></li>
+  <li><a href="#number" title="Number">Number</a></li>
+  <li><a href="#string" title="String">String</a></li>
+  <li><a href="#array" title="Array">Array</a></li>
+  <li><a href="#tuple" title="Tuple">Tuple</a></li>
+  <li><a href="#enum" title="Enum">Enum</a></li>
+  <li><a href="#any" title="Any">Any</a></li>
+  <li><a href="#void" title="Void">Void</a></li>
+  <li><a href="#null-and-undefined title="Null and Undefined">Null and Undefined</a></li>
+  <li><a href="#never" title="Never">Never</a></li>
+  <li><a href="#object" title="Object">Object</a></li>
+  <li><a href="#type-assertions" title="Type assertions">Type assertions</a></li>
 </ol>
 
 #### Boolean
