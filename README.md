@@ -265,7 +265,7 @@ f(); // returns '2'
 
 ##### Scoping rules
 var declarations have some odd scoping rules for those used to other languages. Take the following example:
-
+```javascript
 function f(shouldInitialize: boolean) {
     if (shouldInitialize) {
         var x = 10;
@@ -276,7 +276,7 @@ function f(shouldInitialize: boolean) {
 
 f(true);  // returns '10'
 f(false); // returns 'undefined'
-
+```
 ##### Variable capturing quirks
 
 For those unfamiliar, setTimeout will try to execute a function after a certain number of milliseconds (though waiting for anything else to stop running).
@@ -422,6 +422,7 @@ console.log(first); // outputs 1
 console.log(second); // outputs 2
 ```
 Destructuring works with already-declared variables as well:
+
 ```javascript
 // swap variables
 [first, second] = [second, first];
