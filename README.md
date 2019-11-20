@@ -6,7 +6,7 @@ All Typescript topics index
   <li><a href="#features-of-typescript" title="Features of TypeScript?">Features of TypeScript?</a></li>
   <li><a href="#why-use-typescript" title="Why Use TypeScript?">Why Use TypeScript?</a></li>
   <li><a href="#basic-types" title="Basic Types">Basic Types</a></li>
-  <li><a href="javascript:;" title="Variable Declarations">Variable Declarations</a></li>
+  <li><a href="#5-variable-declarations" title="Variable Declarations">Variable Declarations</a></li>
   <li><a href="javascript:;" title="Interfaces">Interfaces</a></li>
   <li><a href="javascript:;" title="Classes">Classes</a></li>
   <li><a href="javascript:;" title="Functions">Functions</a></li>
@@ -214,7 +214,7 @@ let someValue: any = "this is a string";
 let strLength: number = (someValue as string).length;
 ```
 
-#### 5. Variable Declarations
+### 5. Variable Declarations
 
 Declaring a variable in JavaScript has always traditionally been done with the var keyword.
 
@@ -309,6 +309,22 @@ let hello = "Hello!";
 ```
 When a variable is declared using let, it uses what some call lexical-scoping or block-scoping. Unlike variables declared with var whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or for-loop.
 
+we’ve captured city from within its environment, we’re still able to access it despite the fact that the if block finished executing.
+```javascript
+function theCityThatAlwaysSleeps() {
+    let getCity;
+
+    if (true) {
+        let city = "Seattle";
+        getCity = function() {
+            return city;
+        }
+    }
+
+    return getCity();
+}
+```
+
 ```javascript
 function f(input: boolean) {
     let a = 100;
@@ -360,6 +376,83 @@ foo();
 
 let a;
 ```
+
+Recall that with our earlier setTimeout example, we ended up needing to use an IIFE to capture the state of a variable for every iteration of the for loop. In effect, what we were doing was creating a new variable environment for our captured variables. That was a bit of a pain, but luckily, you’ll never have to do that again in TypeScript.
+
+let declarations have drastically different behavior when declared as part of a loop. Rather than just introducing a new environment to the loop itself, these declarations sort of create a new scope per iteration. Since this is what we were doing anyway with our IIFE, we can change our old setTimeout example to just use a let declaration.
+
+```javascript
+for (let i = 0; i < 10 ; i++) {
+    setTimeout(function() { console.log(i); }, 100 * i);
+}
+// Output 0 - 9
+```
+
+#### const declarations 
+They are like let declarations but, as their name implies, their value cannot be changed once they are bound. In other words, they have the same scoping rules as let, but you can’t re-assign to them.
+
+```javascript
+const numLivesForCat = 9;
+const kitty = {
+    name: "Aurora",
+    numLives: numLivesForCat,
+}
+
+// Error
+kitty = {
+    name: "Danielle",
+    numLives: numLivesForCat
+};
+
+// all "okay"
+kitty.name = "Rory";
+kitty.name = "Kitty";
+kitty.name = "Cat";
+kitty.numLives--;
+```
+
+### Destructuring 
+
+#### Array destructuring
+
+```javascript
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+```
+Destructuring works with already-declared variables as well:
+```javascript
+// swap variables
+[first, second] = [second, first];
+```
+
+And with parameters to a function:
+
+```javascript
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f([1, 2]);
+
+// Rest
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+
+Example
+
+```javascript
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+
+let [, second, , fourth] = [1, 2, 3, 4];
+console.log(second); // outputs 2
+console.log(fourth); // outputs 4
+```
+
 ##### References
 - <a href="https://www.typescriptlang.org/docs/home.html " title="Typescript documentation">Typescript documentation</a>
 - <a href="https://samueleresca.net/2016/08/solid-principles-using-typescript/" title="SOLID principles">SOLID principles</a>
