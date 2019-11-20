@@ -454,6 +454,96 @@ console.log(second); // outputs 2
 console.log(fourth); // outputs 4
 ```
 
+#### Tuple destructuring
+
+```javascript
+let tuple: [number, string, boolean] = [7, "hello", true];
+
+// It’s an error to destructure a tuple beyond the range of its elements:
+let [a, b, c] = tuple; // a: number, b: string, c: boolean
+let [a, b, c, d] = tuple; // Error, no element at index 3
+
+// As with arrays, you can destructure the rest of the tuple with ..., to get a shorter tuple:
+let [a, ...bc] = tuple; // bc: [string, boolean]
+let [a, b, c, ...d] = tuple; // d: [], the empty tuple
+
+// Ignore trailing elements, or other elements:
+let [a] = tuple; // a: number
+let [, b] = tuple; // b: string
+```
+
+#### Object destructuring
+
+```javascript
+let o = {
+    a: "foo",
+    b: 12,
+    c: "bar"
+};
+let { a, b } = o;
+
+// This creates new variables a and b from o.a and o.b. Notice that you can skip c if you don’t need it.
+
+// Like array destructuring, you can have assignment without declaration:
+({ a, b } = { a: "baz", b: 101 });
+```
+
+You can create a variable for the remaining items in an object using the syntax ...:
+
+```javascript
+let { a, ...passthrough } = o;
+let total = passthrough.b + passthrough.c.length;
+```
+
+##### Property renaming
+
+```javascript
+let { a: newName1, b: newName2 } = o;
+let newName1 = o.a;
+let newName2 = o.b;
+```
+
+Confusingly, the colon here does not indicate the type. The type, if you specify it, still needs to be written after the entire destructuring:
+
+```javascript
+let { a, b }: { a: string, b: number } = o;
+```
+
+##### Default values
+Default values let you specify a default value in case a property is undefined:
+
+```javascript
+function keepWholeObject(wholeObject: { a: string, b?: number }) {
+    let { a, b = 1001 } = wholeObject;
+}
+```
+In this example the b? indicates that b is optional, so it may be undefined. keepWholeObject now has a variable for wholeObject as well as the properties a and b, even if b is undefined.
+
+##### Function declarations
+Destructuring also works in function declarations. For simple cases this is straightforward:
+
+```javascript
+type C = { a: string, b?: number }
+function f({ a, b }: C): void {
+    // ...
+}
+
+
+function f({ a="", b=0 } = {}): void {
+    // ...
+}
+f();
+```
+
+Example 2
+```javascript
+function f({ a, b = 0 } = { a: "" }): void {
+    // ...
+}
+f({ a: "yes" }); // ok, default b = 0
+f(); // ok, default to { a: "" }, which then defaults b = 0
+f({}); // error, 'a' is required if you supply an argument
+```
 ##### References
 - <a href="https://www.typescriptlang.org/docs/home.html " title="Typescript documentation">Typescript documentation</a>
 - <a href="https://samueleresca.net/2016/08/solid-principles-using-typescript/" title="SOLID principles">SOLID principles</a>
