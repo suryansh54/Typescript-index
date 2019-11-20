@@ -40,24 +40,24 @@ All Typescript topics index
   </li>
 </ol>
 
-### What is TypeScript?
+## What is TypeScript?
 - TypeScript is an open-source programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript, and adds optional static typing to the language. TypeScript is designed for development of large applications and transcompiles to JavaScript.
 - ECMAScript + ECMAScript6 + Additional Feature = TypeScript
 - TypeScript is a typed superset of JavaScript compiled to JavaScript.
 
-### Features of TypeScript?
+## Features of TypeScript?
 - **TypeScript is just JavaScript.** TypeScript starts with JavaScript and ends with JavaScript. Typescript adopts the basic building blocks of your program from JavaScript. Hence, you only need to know JavaScript to use TypeScript. All TypeScript code is converted into its JavaScript equivalent for the purpose of execution.
 - **TypeScript supports other JS libraries.** Compiled TypeScript can be consumed from any JavaScript code. TypeScript-generated JavaScript can reuse all of the existing JavaScript frameworks, tools, and libraries.
 - **JavaScript is TypeScript.** This means that any valid .js file can be renamed to .ts and compiled with other TypeScript files.
 - **TypeScript is portable.** TypeScript is portable across browsers, devices, and operating systems. It can run on any environment that JavaScript runs on. Unlike its counterparts, TypeScript doesn’t need a dedicated VM or a specific runtime environment to execute.
 
-### Why Use TypeScript?
+## Why Use TypeScript?
 - **Compilation** − JavaScript is an interpreted language. Hence, it needs to be run to test that it is valid. It means you write all the codes just to find no output, in case there is an error. Hence, you have to spend hours trying to find bugs in the code. The TypeScript transpiler provides the error-checking feature. TypeScript will compile the code and generate compilation errors, if it finds some sort of syntax errors. This helps to highlight errors before the script is run.
 - **Strong Static Typing** − JavaScript is not strongly typed. TypeScript comes with an optional static typing and type inference system through the TLS (TypeScript Language Service). The type of a variable, declared with no type, may be inferred by the TLS based on its value.
 - **TypeScript supports type definitions** for existing JavaScript libraries. TypeScript Definition file (with .d.ts extension) provides definition for external JavaScript libraries. Hence, TypeScript code can contain these libraries.
 - TypeScript supports **Object Oriented Programming** concepts like classes, interfaces, inheritance, etc.
 
-### Basic Types
+## Basic Types
 <ol>
   <li><a href="#boolean" title="Boolean">Boolean</a></li>
   <li><a href="#number" title="Number">Number</a></li>
@@ -214,7 +214,7 @@ let someValue: any = "this is a string";
 let strLength: number = (someValue as string).length;
 ```
 
-### 5. Variable Declarations
+## 5. Variable Declarations
 
 Declaring a variable in JavaScript has always traditionally been done with the var keyword.
 
