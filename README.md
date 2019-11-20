@@ -214,16 +214,152 @@ let someValue: any = "this is a string";
 let strLength: number = (someValue as string).length;
 ```
 
+#### 5. Variable Declarations
 
+Declaring a variable in JavaScript has always traditionally been done with the var keyword.
 
+```javascript
+var a = 10;
+```
+We can also declare a variable inside of a function:
 
+```javascript
+function f() {
+    var message = "Hello, world!";
 
+    return message;
+}
+```
+and we can also access those same variables within other functions:
 
+```javascript
+function f() {
+    var a = 10;
+    return function g() {
+        var b = a + 1;
+        return b;
+    }
+}
 
+var g = f();
+g(); // returns '11'
+```
 
+```javascript
+function f() {
+    var a = 1;
 
+    a = 2;
+    var b = g();
+    a = 3;
 
+    return b;
 
+    function g() {
+        return a;
+    }
+}
+
+f(); // returns '2'
+```
+
+##### Scoping rules
+var declarations have some odd scoping rules for those used to other languages. Take the following example:
+
+function f(shouldInitialize: boolean) {
+    if (shouldInitialize) {
+        var x = 10;
+    }
+
+    return x;
+}
+
+f(true);  // returns '10'
+f(false); // returns 'undefined'
+
+##### Variable capturing quirks
+
+For those unfamiliar, setTimeout will try to execute a function after a certain number of milliseconds (though waiting for anything else to stop running).
+```javascript
+for (var i = 0; i < 10; i++) {
+    setTimeout(function() { console.log(i); }, 100 * i);
+}
+// Output 10 times 10
+```
+
+- Every function expression we pass to setTimeout actually refers to the same i from the same scope.
+- Let’s take a minute to consider what that means. setTimeout will run a function after some number of milliseconds, but only after the for loop has stopped executing; By the time the for loop has stopped executing, the value of i is 10. So each time the given function gets called, it will print out 10!
+
+A common work around is to use an IIFE - an Immediately Invoked Function Expression - to capture i at each iteration:
+
+```javascript
+for (var i = 0; i < 10; i++) {
+    // capture the current state of 'i'
+    // by invoking a function with its current value
+    (function(i) {
+        setTimeout(function() { console.log(i); }, 100 * i);
+    })(i);
+}
+```
+
+#### let declarations
+
+```javascript
+let hello = "Hello!";
+```
+When a variable is declared using let, it uses what some call lexical-scoping or block-scoping. Unlike variables declared with var whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or for-loop.
+
+```javascript
+function f(input: boolean) {
+    let a = 100;
+
+    if (input) {
+        // Still okay to reference 'a'
+        let b = a + 1;
+        return b;
+    }
+
+    // Error: 'b' doesn't exist here
+    return b;
+}
+
+f(true) // 101
+f(false) // b is not defined
+```
+
+Here, we have two local variables a and b. a’s scope is limited to the body of f while b’s scope is limited to the containing if statement’s block.
+
+Variables declared in a catch clause also have similar scoping rules.
+
+```javascript
+try {
+    throw "oh no!";
+}
+catch (e) {
+    console.log("Oh well.");
+}
+
+// Error: 'e' doesn't exist here
+console.log(e);
+```
+
+```javascript
+a++; // illegal to use 'a' before it's declared;
+let a;
+```
+
+```javascript
+function foo() {
+    // okay to capture 'a'
+    return a;
+}
+
+// illegal call 'foo' before 'a' is declared
+// runtimes should throw an error here
+foo();
+
+let a;
+```
 ##### References
 - <a href="https://www.typescriptlang.org/docs/home.html " title="Typescript documentation">Typescript documentation</a>
 - <a href="https://samueleresca.net/2016/08/solid-principles-using-typescript/" title="SOLID principles">SOLID principles</a>
